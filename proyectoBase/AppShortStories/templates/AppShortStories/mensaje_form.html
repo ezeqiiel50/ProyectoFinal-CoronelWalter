@@ -1,0 +1,24 @@
+{% extends "AppShortStories/index.html" %}
+
+{% block body %}
+
+<div class="container w-50 p-3 card border-info">
+    <div class="card">
+        <div class="card-header">
+            Panel de Administracion
+        </div>
+        <div class="card-body">
+            <blockquote class="blockquote mb-0">
+                <form method="Post">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <button id="BtnNO" type="submit" class="btn btn-outline-warning">Confirmar  <i class="bi bi-save2"></i></button>
+                    <a id="BtnNO" href="{% url 'inicio'%}" class="btn btn-outline-danger">Cancelar  <i class="bi bi-x-octagon"></i></a>
+                </form>
+            </blockquote>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+{% endblock %}

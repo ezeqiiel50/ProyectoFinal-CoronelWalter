@@ -1,0 +1,24 @@
+{% extends "AppShortStories/index.html" %}
+
+{% block body %}
+
+<div class="container w-50 p-3">
+    <div class="card">
+        <div class="card-header">
+            Borrar contenido
+        </div>
+        <div class="card-body">
+            <blockquote class="blockquote mb-0">
+                <form method="Post">
+                    {% csrf_token %}
+                    <h6>Estas Seguro que deseas borrar el cuento con el titulo "{{object.titulo}}" ??</h6>
+                    <div>
+                        <input type="submit" class="btn btn-outline-secondary" value="Si">
+                        <a id="BtnNO" href="{% url 'cuento-list'%}" class="btn btn-outline-danger">No</a>
+                    </div>
+                </form>
+            </blockquote>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends "AppShortStories/index.html" %}
+
+{% block body %}
+
+{% if not cuentos %}
+  <div id="central" class="container w-50 p-3" style="margin-top: 50px;">
+    <h3>Sin Publicaciones  <i class="bi bi-emoji-frown"></i></h3>
+  </div>
+  
+{% else %}
+
+<div class="container">
+    <h2>Muro</h2>
+</div>
+{% if user.is_authenticated %}
+<div class="container d-flex align-items-center justify-content-center">
+    <div class="row">
+        {% for cuento in cuentos %}
+        <div class="col-6 .col-sm-12">
+            <div class="card border-dark" style="width: 35rem; margin-bottom: 30px;">
+                <div class="card-header"><strong>{{cuento.titulo}}</strong></div>
+                <div class="card-body">
+                    <p>{{cuento.texto}}</p>
+                    {% if cuento.imagen %}
+                    <img width="500px" height="100%"  class="img-thumbnail" src="{{cuento.imagen.url}}" alt="Card image cap">
+                    {% endif %}
+                </div>
+                <div class="card-footer text-muted">
+                   <span>{{ cuento.creado_el }}</span>
+                   {% if user.is_authenticated %}
+                   <span style="float:right;">{{ cuento.publisher.username }}</span>
+                   {% endif %}
+                </div>
+            </div>  
+        </div>
+        {% endfor%}
+    </div>
+</div>
+{% else %}
+<div class="container d-flex align-items-center justify-content-center">
+    <div class="row">
+    {% for cuento in cuentos %}
+        {% if not cuento.estado %}
+        <div class="col-6 .col-sm-12">
+            <div class="card border-dark" style="width: 35rem; margin-bottom: 30px;">
+                <div class="card-header"><strong>{{cuento.titulo}}</strong></div>
+                <div class="card-body">
+                    <p>{{cuento.texto}}</p>
+                    {% if cuento.imagen %}
+                    <img width="500px" height="100%" class="img-thumbnail" src="{{cuento.imagen.url}}" alt="Card image cap">
+                    {% endif %}
+                </div>
+                <div class="card-footer text-muted">
+                   <span>{{ cuento.creado_el }}</span>
+                   {% if user.is_authenticated %}
+                   <span style="float:right;">{{ cuento.publisher.username }}</span>
+                   {% endif %}
+                </div>
+            </div>  
+        </div>
+        {% endif %}
+    {% endfor%}
+    </div>
+</div>
+{% endif %}
+{% endif %}
+{% endblock %}

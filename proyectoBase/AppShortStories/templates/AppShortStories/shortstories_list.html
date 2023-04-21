@@ -1,0 +1,50 @@
+{% extends "AppShortStories/index.html" %}
+
+{% block body %}
+<div class="container w-50 p-3">
+    <form>
+        <div class="input-group mb-3">
+            <input name="criterio_titulo" maxlength="50" type="text" class="form-control" placeholder="Buscar por Titulo" aria-label="Recipient's username" aria-describedby="button-addon2">
+            <button class="btn btn-outline-warning" type="submit" id="button-addon2" style="margin-right: 5px;"><i class="bi bi-search"></i> Buscar</button>
+            <a class="btn btn-outline-success" href="{% url 'cuento-create' %}"><i class="bi bi-plus-circle"></i> Nuevo Cuento</a>
+          </div>
+    </form>
+</div>
+<!-- Modal -->
+{% if not cuentos %}
+<div class="container w-50 p-3" id="central">
+    <h5>No se encontro informacion <i class="bi bi-exclamation-diamond"></i></h5>
+</div>
+{% else %}
+<div class="container card border-dark">
+<table class="table table table-hover" cellpadding="2" cellspacing="0">
+    <tr id="Headboard">
+        <th scope="col" style="width: 10px;">#</th>
+        <th scope="col" style="width: 40px;">Titulo</th>
+        <th scope="col" >Texto</th>
+        <th scope="col" style="width: 30px;">Genero</th>
+        <th scope="col" style="width: 15px; text-align: center">Privado</th>
+        <th style="text-align: center; width: 40px">Tareas</th>
+    </tr>
+     {% for cuento in cuentos %}
+      {% if cuento.publisher == user %}
+        <tr>
+            <td style="width: 10px;">#</td>
+            <td style="width: 40px;">{{cuento.titulo}}</td>
+            <td>{{cuento.texto}}</td>
+            <td style="width: 30px;">{{cuento.genero}}</td>
+            <td style="width: 15px; text-align: center">{{cuento.estado}}</td>
+            <td style="text-align: center; width: 40px">
+                <a href="{% url 'cuento-detail' cuento.id %}" class="btn btn-outline-secondary"><i class="bi bi-eye"></i></a>
+                {% if user.is_authenticated %}
+                <a href="{% url 'cuento-edit' cuento.id %}" class="btn btn-outline-info"><i class="bi bi-pencil-square"></i></a>
+                <a href="{% url 'cuento-delete' cuento.id %}" class="btn btn-outline-danger"><i class="bi bi-trash-fill"></i></a>
+                {% endif %}
+            </td>
+        </tr>
+        {% endif %}
+     {% endfor %} 
+</table>
+</div>
+{% endif %}
+{% endblock %}

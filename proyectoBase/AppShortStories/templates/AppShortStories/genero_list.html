@@ -1,0 +1,47 @@
+{% extends "AppShortStories/index.html" %}
+
+{% block body %}
+
+<div class="container w-50 p-3">
+    <form>
+        <div class="input-group mb-3">
+            <input name="criterio_descripcion" maxlength="50" type="text" class="form-control" placeholder="Buscar por descripcion" aria-label="Recipient's username" aria-describedby="button-addon2">
+            <button class="btn btn-outline-warning" type="submit" id="button-addon2" style="margin-right: 5px;"><i class="bi bi-search"></i>Buscar</button>
+            <a class="btn btn-outline-success" href="{% url 'genero-create' %}"><i class="bi bi-plus-circle"></i> Nuevo Genero</a>
+        </div>
+    </form>
+</div>
+<!-- Modal -->
+{% if not generos %}
+<div class="container w-50 p-3" id="central">
+    <span></span>
+    <h5>No se encontro informacion <i class="bi bi-exclamation-diamond"></i></h5>
+</div>
+{% else %}
+<div class="container card border-dark" style="width: 700px;">
+    <table class="table table table-hover" cellpadding="2" cellspacing="0">
+        <tr id="Headboard">
+            <th scope="col" style="width: 40px;">Descripcion</th>
+            <th scope="col" style="width: 15px; text-align: center">Activo</th>
+            <th style="text-align: center; width: 40px">Tareas</th>
+        </tr>
+        {% for genero in generos %}
+        <tr>
+            <td style="width: 40px;">{{genero.descripcion}}</td>
+            <td style="width: 15px; text-align: center">{{genero.estado}}</td>
+            <td style="text-align: center; width: 40px">
+                <a href="{% url 'genero-detail' genero.id %}" class="btn btn-outline-secondary"><i
+                        class="bi bi-eye"></i></a>
+                {% if user.is_authenticated %}
+                <a href="{% url 'genero-edit' genero.id %}" class="btn btn-outline-info"><i
+                        class="bi bi-pencil-square"></i></a>
+                <a href="{% url 'genero-delete' genero.id %}" class="btn btn-outline-danger"><i
+                        class="bi bi-trash-fill"></i></a>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "AppShortStories/index.html" %}
+
+{% block body %}
+
+<div class="container w-50 p-3">
+    <form>
+        <div class="input-group mb-3">
+            <input name="criterio_mensaje" maxlength="50" type="text" class="form-control" placeholder="Buscar por una palabra clave del mensaje" aria-label="Recipient's username" aria-describedby="button-addon2">
+            <button class="btn btn-outline-warning" type="submit" id="button-addon2" style="margin-right: 5px;"><i class="bi bi-search"></i>Buscar</button>
+        </div>
+    </form>
+</div>
+<!-- Modal -->
+{% if not mensajes %}
+<div class="container w-50 p-3" id="central">
+    <h5>No se encontro informacion <i class="bi bi-exclamation-diamond"></i></h5>
+</div>
+{% else %}
+<div class="container card border-dark" style="width: auto;">
+    <table class="table table table-hover" cellpadding="2" cellspacing="0">
+            <table class="table table table-hover" cellpadding="2" cellspacing="0">
+                <tr id="Headboard">
+                    <th scope="col" style="width: 40px;">Email</th>
+                    <th scope="col" style="width: 40px;">Motivo</th>
+                    <th scope="col">mensaje</th>
+                    <th scope="col" style="width: 30px;">estado</th>
+                    <th scope="col" style="width: 30px; text-align: center">Fecha</th>
+                    {% if user.is_authenticated and user.id == 1 %}
+                    <th style="text-align: center; width: 40px">Tareas</th>
+                    {% endif %}
+                </tr>
+
+                {% for mjs in mensajes %}
+                <tr>
+                    <td style="width: 40px;">{{mjs.email}}</td>
+                    <td style="width: 40px;">{{mjs.get_motivo_display}}</td>
+                    <td>{{mjs.mensaje}}</td>
+                    <td style="width: 30px;">{{mjs.get_estado_display}}</td>
+                    <td style="width: 30px; text-align: center">{{mjs.enviado_el}}</td>
+                    {% if user.is_authenticated and mjs.destinatario == user %}
+                    <td style="text-align: center; width: 40px"><a href="{% url 'mensaje-edit' mjs.id %}" class="btn btn-outline-info"><i class="bi bi-pencil-square"></i></a> </td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <br>
+        <br>
+{% endif %}
+{% endblock %}

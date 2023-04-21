@@ -1,0 +1,36 @@
+{% extends "AppShortStories/index.html" %}
+
+{% block body %}
+{% load static %}
+<div class="container mt-6 mb-6 p-3 d-flex justify-content-center">
+    <div class="card p-4">
+        <div class=" image d-flex flex-column justify-content-center align-items-center">
+            <button class="btn btn-outline-light">
+                {% if object.imagen %}
+                <img src="{{ user.profile.imagen.url }}" height="100%" width="200" class="img-thumbnail"/>
+                {% else%}
+                <img src="{% static 'AppShortStories/img/contacto.png' %}" class="img-thumbnail" height="100%" width="200" />
+                {% endif %}
+            </button>
+            <span class="name mt-3"><i class="bi bi-person-badge-fill"></i>  Usuario: {{object.user}}</span>
+            <span class="idd"><i class="bi bi-person-fill-check"></i>  Nombre: {{object.nombre}} {{object.apellido}}</span>
+            <div class="d-flex flex-row justify-content-center align-items-center gap-2">
+            </div>
+            <div class="text mt-3">
+                <span>
+                    <i class="bi bi-telephone-fill"></i>  Telefono: {{object.telefono}}
+                    <br>
+                    <br>
+                    <i class="bi bi-envelope"></i>  Email: {{object.email}}
+                     <br>
+                     <br>
+                </span>
+            </div>
+            <div class="gap-3 mt-3 icons d-flex flex-row justify-content-center align-items-center">
+                <a href="{% url 'inicio'%}" class="btn btn-outline-danger"><i class="bi bi-backspace"></i> Atras</a>
+                <a href="{% url 'profile-edit' object.id %}" class="btn btn-outline-success"><i class="bi bi-pencil-square"> </i>Editar</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,12 +1,12 @@
-#ProyectoFinal-CoronelWalter
+# ProyectoFinal-CoronelWalter
 
-##Comisión: 40425
-##Alumno: Coronel Walter Ezequiel
-##Nombre del Proyecto
-##Cuento Cortos
+## Comisión: 40425
+## Alumno: Coronel Walter Ezequiel
+## Nombre del Proyecto
+## Cuento Cortos
 
-#Versión
-###1.0
+# Versión
+### 1.0
 
 #Descripción del Proyecto
 ##La App esta destinada a usuarios que quieran compartir cuentos o historias cortas junto con una imagen descriptiva.

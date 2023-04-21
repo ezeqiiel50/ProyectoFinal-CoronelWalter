@@ -11,7 +11,9 @@
 #Descripción del Proyecto
 ##La App esta destinada a usuarios que quieran compartir cuentos o historias cortas junto con una imagen descriptiva.
 
-##El usuario sin registrarse podra ver las publicaciones que sean realizados de caracter publico una vez registrado y logeado en la app el pordra visualizar las publicaciones privadas al igual que las publicas ademas de poder realizar sus propias publicaciones, en caso de que el usuario quiera realizar algun accion ( alta, baja, modificacion) sin estar logiado debidamente la app lo redireccionara ala pantalla de logueo.
+El usuario sin registrarse podra ver las publicaciones que sean realizados de caracter publico una vez registrado y logeado en la app el pordra visualizar
+las publicaciones privadas al igual que las publicas ademas de poder realizar sus propias publicaciones, en caso de que el usuario quiera realizar 
+algun accion ( alta, baja, modificacion) sin estar logiado debidamente la app lo redireccionara ala pantalla de logueo.
 
 #Los usuarios comunes tiene las siguientes acciones:
 
